@@ -4,8 +4,23 @@ from os import getFileInfo, removeDir, removeFile, PathComponent, walkDirRec
 from strutils import split, replace
 from parseutils import parseInt
 
+let version="0.0.0"
+
 proc writeHelp() =
-  echo "Help"
+  echo &"""
+delif {version}
+
+  USAGE:
+
+    $ delif [flags] <path-to-file-or-folder>
+
+  FLAGS:
+
+  -h            Print this help 
+  -v            Print current version
+  --dry         Show what will be deleted without actually deleting it
+  --gt=SIZE     Delete files/folders greater than SIZE
+"""
 
 proc getDirSize(path: string): int64 =
   var
@@ -78,7 +93,7 @@ proc cli() =
     of cmdLongOption, cmdShortOption:
       case key
       of "v", "version":
-        echo "0.0.0"
+        echo &"{version}"
         quit()
       of "h", "help":
         writeHelp()
