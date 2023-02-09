@@ -1,12 +1,12 @@
 # Package
 
-version       = "0.1.0"
-author        = "Reaper"
-description   = "A new awesome nimble package"
-license       = "MIT"
-srcDir        = "src"
+version = "0.1.0"
+author = "Reaper"
+description = "A new awesome nimble package"
+license = "MIT"
+srcDir = "src"
 
-bin           = @["delif"]
+bin = @["delif"]
 
 # Dependencies
 
