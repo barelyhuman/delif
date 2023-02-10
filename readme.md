@@ -23,11 +23,15 @@ Once the above functionalities have been added, you'll be able to download the b
 ## Usage
 
 ```sh
-$ delif file folder # simply delete the file or folder without any conditions
+$ delif file directory # simply delete the file or directory without any conditions
 
-$ delif --gt="1M" folder # delete folder if it's greater than 1 megabyte
+$ delif --gt="1M" directory # delete directory if it's greater than 1 megabyte
 
-$ delif --dry --gt="1MB" folder # same as above but will dry run instead of actually deleting stuff
+$ delif --dry --gt="1MB" directory # same as above but will dry run instead of actually deleting stuff
+
+$ delif -d directory file # delete only directories from a list of files and directories
+
+$ delif -f directory file # delete only files from a list of files and directories
 ```
 
 ## License
