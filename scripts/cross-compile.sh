@@ -5,8 +5,8 @@ set -euxo pipefail
 NIM_VERSION="1.6.4"
 
 # TODO: replace according to project
-bin_name='example'
-src='src/example.nim'
+bin_name='delif'
+src='src/delif.nim'
 
 declare -a build_options=(
     "-o:bin/linux-amd64/$bin_name"

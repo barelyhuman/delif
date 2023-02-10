@@ -3,7 +3,7 @@ import std/strformat
 
 from delif/file import getSize, deleteItem
 from delif/bytes import humanToBytes, bytesToHuman
-from delif/utils import isDeletable
+from delif/utils import isDeletableBySize, isDeletableByType
 
 let version = "0.0.0"
 
@@ -22,6 +22,8 @@ delif {version}
   --dry         Show what will be deleted without actually deleting it
   --gt=SIZE     Delete files/folders greater than SIZE
   --lt=SIZE     Delete files/folders less than SIZE
+  -d            Delete only directories
+  -f            Delete only files
 """
 
 proc cli() =
@@ -31,6 +33,8 @@ proc cli() =
     lessThanSize: int64 = -1
     folders: seq[string]
     dryRun: bool = false
+    onlyFolders: bool = false
+    onlyFiles: bool = false
 
   for kind, key, value in getOpt():
     case kind
@@ -51,6 +55,10 @@ proc cli() =
         quit()
       of "dry":
         dryRun = true
+      of "d":
+        onlyFolders = true
+      of "f":
+        onlyFiles = true
       of "gt":
         greaterThanSize = humanToBytes(value)
       of "lt":
@@ -62,11 +70,14 @@ proc cli() =
 
   for pathToDel in folders:
     let size = getSize(pathToDel)
-    let deleteable = isDeletable(
+
+    var deleteable = isDeletableBySize(
       lessThanSize,
       greaterThanSize,
-      size
+      size,
     )
+
+    deleteable = isDeletableByType(pathToDel, onlyFiles, onlyFolders)
 
     if deleteable:
       if not dryRun:

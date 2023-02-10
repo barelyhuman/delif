@@ -11,8 +11,8 @@ tiny utility to delete with certain queries.
 - [ ] Delete based on size
   - [x] Delete based on size greater than `x`
   - [x] Delete based on size lower than `x`
-  - [ ] Delete only Files
-  - [ ] Delete only Folders
+  - [x] Delete only Files
+  - [x] Delete only Folders
   - [ ] Delete only children (parent folder is left as is)
 - [x] Dry Run to list files to be deleted
 
