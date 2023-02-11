@@ -8,12 +8,12 @@ tiny utility to delete with certain queries.
 
 ## Goals
 
-- [ ] Delete based on size
+- [x] Delete based on size
   - [x] Delete based on size greater than `x`
   - [x] Delete based on size lower than `x`
+- [x] Delete by type
   - [x] Delete only Files
   - [x] Delete only Folders
-  - [ ] Delete only children (parent folder is left as is)
 - [x] Dry Run to list files to be deleted
 
 ## Installation

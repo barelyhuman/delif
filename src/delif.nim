@@ -1,9 +1,11 @@
 import parseopt
 import std/strformat
+from os import fileExists
 
 from delif/file import getSize, deleteItem
 from delif/bytes import humanToBytes, bytesToHuman
 from delif/utils import isDeletableBySize, isDeletableByType
+
 
 let version = "0.0.0"
 
@@ -69,6 +71,11 @@ proc cli() =
       discard
 
   for pathToDel in folders:
+    
+    if not fileExists(pathToDel):
+      echo &"{pathToDel}, doesn't exist, ignoring..."
+      continue
+
     let size = getSize(pathToDel)
 
     var deleteable = isDeletableBySize(
